@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-server
-  namespace: nginx-server
+  namespace: nginx
   labels:
     app: nginx
 spec:
@@ -18,3 +18,12 @@ spec:
       containers:
       - name: nginx
         image: nginx
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/conf.d/default.conf
+            subPath: default.conf
+
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
