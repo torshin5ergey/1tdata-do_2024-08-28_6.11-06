@@ -19,5 +19,6 @@ data:
 
       location /status {
           stub_status;
+          allow all; # not secure
       }
     }
